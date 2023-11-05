@@ -10,6 +10,6 @@ public class SmokeTests : WebApplicationFactory<Program>
     {
         var client = CreateClient();
         var response = client.GetAsync("/health").Result;
-        Assert.AreEqual(HttpStatusCode.OK, response.StatusCode);
+        Assert.That(response.StatusCode, Is.EqualTo(HttpStatusCode.OK));
     }
 }

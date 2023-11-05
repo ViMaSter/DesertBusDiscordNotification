@@ -1,14 +1,11 @@
 using System.Reflection;
+using DesertBusDiscordNotification.Client;
 using DesertBusDiscordNotification.HealthChecks;
 using Microsoft.Extensions.Diagnostics.HealthChecks;
 
 var builder = WebApplication.CreateBuilder(args);
 builder.Services
-    .AddHttpClient("DesertBusAPI", client =>
-    {
-        client.BaseAddress = new Uri("https://desertbus.org/wapi/");
-        client.DefaultRequestHeaders.Add("User-Agent", $"DesertBusDiscordNotification/{Assembly.GetExecutingAssembly().GetCustomAttribute<AssemblyInformationalVersionAttribute>()?.InformationalVersion}");
-    });
+    .AddHttpClient<DesertBusAPI>();
 
 builder.Services
     .AddHealthChecks()
