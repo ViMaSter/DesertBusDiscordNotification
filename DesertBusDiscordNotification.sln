@@ -2,7 +2,7 @@
 Microsoft Visual Studio Solution File, Format Version 12.00
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "DesertBusDiscordNotification", "DesertBusDiscordNotification/DesertBusDiscordNotification.csproj", "{04721F06-7554-4BE8-BB53-7354D92E67B0}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "DesertBusDiscordNotification.Test", "DesertBusDiscordNotification.Test\DesertBusDiscordNotification.Test\DesertBusDiscordNotification.Test.csproj", "{F94F7600-199E-43E1-A600-0696BD92F68F}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "DesertBusDiscordNotification.Test", "DesertBusDiscordNotification.Test/DesertBusDiscordNotification.Test.csproj", "{F94F7600-199E-43E1-A600-0696BD92F68F}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution

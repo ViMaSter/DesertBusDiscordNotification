@@ -19,8 +19,7 @@
     </ItemGroup>
 
     <ItemGroup>
-      <ProjectReference Include="..\..\DesertBusDiscordNotification\DesertBusDiscordNotification.csproj" />
-      <ProjectReference Include="..\..\DesertBusDiscordNotification\DesertBusDiscordNotification\DesertBusDiscordNotification.csproj" />
+      <ProjectReference Include="../DesertBusDiscordNotification/DesertBusDiscordNotification.csproj" />
     </ItemGroup>
 
 </Project>
