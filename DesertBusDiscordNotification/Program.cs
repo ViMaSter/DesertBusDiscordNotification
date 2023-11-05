@@ -22,3 +22,9 @@ var app = builder.Build();
 app.MapGet("/", () => "OK");
 app.MapHealthChecks("/health");
 app.Run();
+
+namespace DesertBusDiscordNotification
+{
+    public partial class Program
+    { }
+}
