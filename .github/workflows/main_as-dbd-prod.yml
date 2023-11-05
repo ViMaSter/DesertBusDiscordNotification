@@ -21,18 +21,20 @@ jobs:
         with:
           dotnet-version: '8.x'
           include-prerelease: true
-
+      
       - run: dotnet build --configuration Release
+        working-directory: DesertBusDiscordNotification
 
-      - run: dotnet test
-
-      - run: dotnet publish -c Release -o ${{env.DOTNET_ROOT}}/output
+      - run: dotnet publish -c Release -o ${{env.DOTNET_ROOT}}/DesertBusDiscordNotification/publish
+        working-directory: DesertBusDiscordNotification
 
       - name: Upload artifact for deployment job
         uses: actions/upload-artifact@v3
         with:
           name: .net-app
-          path: ${{env.DOTNET_ROOT}}/output
+          path: ${{env.DOTNET_ROOT}}/DesertBusDiscordNotification/publish
+
+      - run: dotnet test
 
   deploy:
     runs-on: ubuntu-latest
