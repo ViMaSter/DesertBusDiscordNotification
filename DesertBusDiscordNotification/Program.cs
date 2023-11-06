@@ -30,6 +30,5 @@ app.Run();
 
 namespace DesertBusDiscordNotification
 {
-    public partial class Program
-    { }
+    public abstract class Program;
 }
