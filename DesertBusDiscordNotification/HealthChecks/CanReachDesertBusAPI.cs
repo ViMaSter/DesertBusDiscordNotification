@@ -1,5 +1,4 @@
-﻿using System.Text.Json;
-using DesertBusDiscordNotification.Client;
+﻿using DesertBusDiscordNotification.Client;
 using Microsoft.Extensions.Diagnostics.HealthChecks;
 
 namespace DesertBusDiscordNotification.HealthChecks;
@@ -14,7 +13,7 @@ public class CanReachDesertBusAPI(IServiceProvider services) : IHealthCheck
 
         if (response == null)
         {
-            return await Task.FromResult(HealthCheckResult.Unhealthy($"Desert Bus API is reachable but response couldn't be parsed"));
+            return await Task.FromResult(HealthCheckResult.Unhealthy("Desert Bus API is reachable but response couldn't be parsed"));
         }
 
         return await Task.FromResult(HealthCheckResult.Healthy("Desert Bus API is reachable"));

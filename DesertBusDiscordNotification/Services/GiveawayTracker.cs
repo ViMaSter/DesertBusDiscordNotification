@@ -9,7 +9,7 @@ public class GiveawayTracker(ISender sender, IDesertBusAPIClient apiClient)
     private ISender Sender { get; } = sender;
     private IDesertBusAPIClient ApiClient { get; } = apiClient;
 
-    private Dictionary<int, Prize> _state = new();
+    private readonly Dictionary<int, Prize> _state = new();
     
     private void OnPrizeNotInactive(int id)
     {
