@@ -1,11 +1,13 @@
 using System.Reflection;
 using DesertBusDiscordNotification.Client;
 using DesertBusDiscordNotification.HealthChecks;
+using DesertBusDiscordNotification.Services;
+using DesertBusDiscordNotification.Services.Sender;
 using Microsoft.Extensions.Diagnostics.HealthChecks;
 
 var builder = WebApplication.CreateBuilder(args);
 builder.Services
-    .AddHttpClient<DesertBusAPI>();
+    .AddHttpClient<IDesertBusAPIClient, DesertBusAPIClient>();
 
 builder.Services
     .AddHealthChecks()
@@ -15,6 +17,10 @@ builder.Services
         HealthStatus.Unhealthy,
         new[] { "ready" }
     ));
+
+builder.Services
+    .AddSingleton<ISender, DiscordSender>()
+    .AddSingleton<GiveawayTracker>();
 
 var app = builder.Build();
 app.MapGet("/", () => "OK");
