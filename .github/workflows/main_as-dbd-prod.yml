@@ -42,6 +42,7 @@ jobs:
     environment:
       name: 'Production'
       url: ${{ steps.deploy-to-webapp.outputs.webapp-url }}
+    if: github.ref == 'refs/heads/main' && github.event_name == 'push'
 
     steps:
       - name: Download artifact from build job
