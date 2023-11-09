@@ -1,10 +1,22 @@
 using System.Net;
+using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.Mvc.Testing;
+using Microsoft.Extensions.DependencyInjection;
 
 namespace DesertBusDiscordNotification.Test;
 
 public class SmokeTests : WebApplicationFactory<Program>
 {
+
+    protected override void ConfigureWebHost(IWebHostBuilder builder)
+    {
+        builder.ConfigureServices(services =>
+        {
+            // set mock password for hangfire dashboard
+            services.Configure<DesertBusDiscordNotification.Options.Hangfire>(options => options.Password = "password");
+        });
+    }
+
     private HttpClient _client = null!;
 
     [SetUp]

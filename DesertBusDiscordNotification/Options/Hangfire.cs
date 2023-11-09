@@ -1,6 +1,6 @@
 namespace DesertBusDiscordNotification.Options;
 
-internal class Hangfire
+public class Hangfire
 {
     public required string Password { get; set; }
 }
