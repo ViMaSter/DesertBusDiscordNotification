@@ -17,7 +17,7 @@ public class GiveawayTracker(ISender sender, IDesertBusAPIClient apiClient, ILog
         Logger.LogInformation("Prize {Id} is not inactive, sending notification...", id);
         Sender.SendAsync(
             _state[id].title,
-            0,
+            _state[id].bid,
             _state[id].image
         );
     }
@@ -33,14 +33,56 @@ public class GiveawayTracker(ISender sender, IDesertBusAPIClient apiClient, ILog
         
         foreach (var updatedGiveaway in updatedGiveaways)
         {
-            if ((!_state.TryGetValue(updatedGiveaway.id, out var value) || value.state == updatedGiveaway.state) && updatedGiveaway.state == "inactive")
+            if (updatedGiveaway.state != "active")
             {
                 Logger.LogTrace("Prize {Id} is inactive, skipping...", updatedGiveaway.id);
+                continue;
+            }
+            
+            if (_state.TryGetValue(updatedGiveaway.id, out var value) && value.state == updatedGiveaway.state)
+            {
+                Logger.LogTrace("Prize {Id} is already active, skipping...", updatedGiveaway.id);
+                continue;
+            }
+            
+            if (updatedGiveaway.bid == 0)
+            {
+                Logger.LogTrace("Prize {Id} has no bid, skipping...", updatedGiveaway.id);
+                continue;
+            }
+            
+            if(!_tracking.Contains(updatedGiveaway.id))
+            {
+                Logger.LogTrace("Prize {Id} is not being tracked, skipping...", updatedGiveaway.id);
                 continue;
             }
 
             _state[updatedGiveaway.id] = updatedGiveaway;
             OnPrizeNotInactive(updatedGiveaway.id);
         }
+    }
+
+    private readonly List<int> _tracking = new();
+
+    public bool AddTracking(int id)
+    {
+        if (_tracking.Contains(id))
+        {
+            return false;
+        }
+        
+        _tracking.Add(id);
+        return true;
+    }
+
+    public bool RemoveTracking(int id)
+    {
+        if (!_tracking.Contains(id))
+        {
+            return false;
+        }
+        
+        _tracking.Remove(id);
+        return true;
     }
 }

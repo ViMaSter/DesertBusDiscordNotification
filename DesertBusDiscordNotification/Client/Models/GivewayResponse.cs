@@ -19,7 +19,7 @@ public record Prize(
     string state,
     string image,
     string title,
-    int bid,
+    decimal bid,
     string bidder,
     string description,
     string start,
