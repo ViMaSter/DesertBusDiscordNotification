@@ -9,7 +9,7 @@
 
 
     <ItemGroup>
-      <PackageReference Include="Hangfire" Version="1.8.6" />
+      <PackageReference Include="Hangfire" Version="1.8.7" />
       <PackageReference Include="Hangfire.Dashboard.BasicAuthorization" Version="1.0.2" />
       <PackageReference Include="Hangfire.InMemory" Version="0.6.0" />
     </ItemGroup>
